@@ -1,16 +1,27 @@
-# This is a sample Python script.
+# with open("data/enwik8", "r", encoding="utf8") as f:
+#     text = f.read()
+#
+# print(len(text))
+# print(text[:500])
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import re
 
+with open("data/enwik8", "r", encoding="utf8") as f:
+    text = f.read()
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+# usuń tagi XML
+text = re.sub(r"<[^>]+>", " ", text)
 
+# zamień na małe litery
+text = text.lower()
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+# usuń znaki specjalne
+text = re.sub(r"[^a-z\s]", " ", text)
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+# usuń podwójne spacje
+text = re.sub(r"\s+", " ", text)
+
+words = text.split()
+
+print("number of words:", len(words))
+print(words[:50])
