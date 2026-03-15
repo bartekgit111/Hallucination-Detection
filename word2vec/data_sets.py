@@ -18,4 +18,8 @@ class data():
 
         self.words  = self.raw_text.split()
 
-wiki = data("data\enwiki8")
+wiki = data("data/enwiki8")
+wiki.raw_text_from_file()
+wiki.tokenization()
+
+print(wiki.words[:20])
