@@ -52,3 +52,4 @@ print(wiki.vocab[:10])
 
 print(list(wiki.word_to_index.items())[:10])
 print(list(wiki.index_to_word.items())[:10])
+print(list(wiki.index_to_word.items())[:1])
