@@ -1,27 +1,21 @@
-# with open("data/enwik8", "r", encoding="utf8") as f:
-#     text = f.read()
-#
-# print(len(text))
-# print(text[:500])
-
 import re
 
-with open("data/enwik8", "r", encoding="utf8") as f:
-    text = f.read()
+class data():
+    def __init__(self,path):
+        self.path = path
+        self.raw_text = ""
+        self.words = []
 
-# usuń tagi XML
-text = re.sub(r"<[^>]+>", " ", text)
+    def raw_text_from_file(self):
+        with open(self.path, "r", encoding="utf8") as file:
+            self.raw_text = file.read()
 
-# zamień na małe litery
-text = text.lower()
+    def tokenization(self):
+        self.raw_text = re.sub(r"<[^>]+>", " ", self.raw_text)
+        self.raw_text = self.raw_text.lower()
+        self.raw_text = re.sub(r"[^a-z\s]", " ", self.raw_text)
+        self.raw_text = re.sub(r"\s+", " ", self.raw_text)
 
-# usuń znaki specjalne
-text = re.sub(r"[^a-z\s]", " ", text)
+        self.words  = self.raw_text.split()
 
-# usuń podwójne spacje
-text = re.sub(r"\s+", " ", text)
-
-words = text.split()
-
-print("number of words:", len(words))
-print(words[:50])
+wiki = data("data\enwiki8")
