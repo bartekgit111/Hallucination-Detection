@@ -2,15 +2,31 @@ import numpy as np
 
 
 def fit(model, data, epochs=3, print_update=10000):
-    for epoch in range(epochs):
+    """
+    This function trains Word2Vec model on dataset.
 
-        indices = np.arange(len(data.text_as_indexes))
-        np.random.shuffle(indices)
+    parameters
+    -model : word2vec
+    -data :
+    -epochs : number of training epochs.
+    -print_update : frequency of printing average loss.
+
+    procedure
+    - shuffle token indexes each epoch
+    - for each center word:
+        - iterate over context window
+        - generate negative samples
+        - SGD update
+    """
+    for e in range(epochs):
+
+        indexes = np.arange(len(data.text_as_indexes))
+        np.random.shuffle(indexes)
 
         loss_sum = 0
         step = 0
 
-        for i in indices:
+        for i in indexes:
 
             center = data.text_as_indexes[i]
 
@@ -29,7 +45,7 @@ def fit(model, data, epochs=3, print_update=10000):
                 step += 1
 
                 if step % print_update == 0:
-                    print(f"epoch {epoch}, step {step}, avg loss {loss_sum / print_update}")
+                    print(f"epoch {e+1}, step {step}, avg loss {loss_sum / print_update}")
                     loss_sum = 0
 
-        print(f"END epoch {epoch}")
+        print(f"-------end epoch {e+1}-------")

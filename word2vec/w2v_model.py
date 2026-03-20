@@ -2,6 +2,18 @@ import numpy as np
 
 
 class Word2Vec:
+    """
+    This class implements Skip-gram Word2Vec model with negative sampling.
+
+    learns:
+    - Input embeddings (W)
+    - Output embeddings (U)
+
+    training with sgd
+
+    W : input embeddings (vocab_size x embedding_dim)
+    U : output embeddings (vocab_size x embedding_dim)
+    """
 
     def __init__(self, vocab_size, embedding_dim=100, lr=0.01):
         self.vocab_size = vocab_size
@@ -14,34 +26,24 @@ class Word2Vec:
     def sigmoid(self, x):
         return 1 / (1 + np.exp(-x))
 
-    # def train_step(self, center, context, negatives):
-    #     v_c = self.W[center]
-    #     u_o = self.U[context].copy()
-    #
-    #     positive_score = self.sigmoid(np.dot(v_c, u_o))
-    #
-    #     loss = -np.log(positive_score + 1e-15)
-    #
-    #     positive_grad = positive_score - 1
-    #
-    #     self.W[center] -= self.lr * positive_grad * u_o
-    #     self.U[context] -= self.lr * positive_grad * v_c
-    #
-    #     for neg in negatives:
-    #         u_k = self.U[neg]
-    #
-    #         negative_score = self.sigmoid(np.dot(v_c, u_k))
-    #
-    #         loss -= np.log(1 - negative_score + 1e-15)
-    #
-    #         negative_grad = negative_score
-    #
-    #         self.W[center] -= self.lr * negative_grad * u_k
-    #         self.U[neg] -= self.lr * negative_grad * v_c
-    #
-    #     return loss
-
     def train_step(self, center, context, negatives):
+        """
+        this method performs one SGD update for a single (center, context) pair.
+
+
+        center : index of center word.
+        context : index of positive context word.
+        negatives : indexes of negative samples.
+
+        returns
+        - loss value
+
+        updates:
+        - W[center]
+        - U[context]
+        - U[negatives]
+
+        """
         v_c = self.W[center]
         u_o = self.U[context]
 
@@ -54,7 +56,7 @@ class Word2Vec:
 
         loss = -np.log(score_pos + 1e-15)
 
-        # negatives
+
         for neg in negatives:
             u_k = self.U[neg]
 
@@ -66,7 +68,7 @@ class Word2Vec:
 
             loss -= np.log(1 - score_neg + 1e-15)
 
-        # update na końcu
+
         self.W[center] -= self.lr * grad_v
         self.U[context] -= self.lr * grad_u_o
 
