@@ -33,6 +33,8 @@ The implemented variant is: Skip-gram model with negative sampling
 ### Author
 
 Bartosz Chudek
+
 Warsaw University of Technology
+
 Faculty of Mathematics and Information Science
 
