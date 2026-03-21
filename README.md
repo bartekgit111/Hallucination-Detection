@@ -7,7 +7,8 @@ The implemented variant is: Skip-gram model with negative sampling
 
 ## Project Structure
 ├── data.py          # data preprocessing
-├── model.py         # Word2Vec model (embeddings + training step)  
+├── model.py         
+# Word2Vec model (embeddings + training step)  
 ├── train.py         # training loop  
 ├── data/            # text (enwik8)  
 └── README.md  
