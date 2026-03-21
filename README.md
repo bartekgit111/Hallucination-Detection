@@ -6,8 +6,6 @@ The implemented variant is: Skip-gram model with negative sampling
 
 
 ## Project Structure
-
-.
 ├── data.py          # data preprocessing
 ├── model.py         # Word2Vec model (embeddings + training step)  
 ├── train.py         # training loop  
@@ -29,6 +27,9 @@ The implemented variant is: Skip-gram model with negative sampling
 - Mikolov et al. (2013) — Efficient Estimation of Word Representations in Vector Space  
 
 
-## Author
+### Author
 
-This project was implemented as part of a technical task focused on machine learning fundamentals, numerical optimization, and low-level implementation skills.
+Bartosz Chudek
+Warsaw University of Technology
+Faculty of Mathematics and Information Science
+
