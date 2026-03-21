@@ -7,7 +7,7 @@ The implemented variant is: Skip-gram model with negative sampling
 
 ## Project Structure
 ```
-Word2vec
+word2vec/
 ├── data_sets.py     # data preprocessing 
 ├── w2v_model.py     # Word2Vec model (embeddings + training step)  
 ├── training.py      # training loop  
