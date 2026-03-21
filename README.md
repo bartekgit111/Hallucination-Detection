@@ -6,12 +6,14 @@ The implemented variant is: Skip-gram model with negative sampling
 
 
 ## Project Structure
+```
 ├── data_sets.py     # data preprocessing 
 ├── w2v_model.py     # Word2Vec model (embeddings + training step)  
 ├── training.py      # training loop  
 ├── tests.py         # training model and test of similarity of words  
 ├── data/            # text (enwik8)  
-└── README.md  
+└── README.md
+``` 
 
 
 
